@@ -1,5 +1,7 @@
 package com.jackie.algorithmdemo.linkedlist_06;
 
+import java.util.List;
+
 /**
  * Description:
  *
@@ -119,6 +121,39 @@ class LinkedListAlgo {
 
     }
 
+    // is it palindrome?
+
+    public static boolean palindrome(ListNode listNode){
+
+        if (listNode == null){
+            return false;
+        }
+        if (listNode.next == null){
+            return true;
+        }
+
+        ListNode tempNode = listNode;
+        ListNode quick = listNode;
+        ListNode slow = listNode;
+
+        while (quick != null && quick.next != null){
+            quick = quick.next.next;
+            slow = slow.next;
+        }
+
+        slow = slow.next;
+        ListNode reversedNode = reverse(slow);
+        while (reversedNode != null){
+            if (reversedNode.data != tempNode.data){
+                return false;
+            }
+            tempNode = tempNode.next;
+            reversedNode = reversedNode.next;
+        }
+        return true;
+
+
+    }
 
 
 
@@ -129,9 +164,6 @@ class LinkedListAlgo {
         ListNode three = new ListNode(3,four);
         ListNode two = new ListNode(2,three);
         ListNode one = new ListNode(1,two);
-
-
-
 
         //测试，单链表反转
 //        printAll(one);
@@ -164,6 +196,14 @@ class LinkedListAlgo {
 //        ListNode listNode = deleteReciprocalKNode(one,2);
 //        printAll(listNode);
 
+        //测试，是否是回文字符串
+//        ListNode e = new ListNode(1,null);
+//        ListNode dd = new ListNode(4,e);
+//        ListNode d = new ListNode(3,dd);
+//        ListNode c = new ListNode(3,d);
+//        ListNode b = new ListNode(4,c);
+//        ListNode a = new ListNode(1,b);
+//        System.out.println(palindrome(a));
 
     }
 
